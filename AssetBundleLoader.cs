@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using AssetLoader.Resources;
+﻿using AssetLoader.Resources;
+using System.Reflection;
 using UnityEngine;
 
 namespace UnityAssetLoader
@@ -85,6 +85,14 @@ namespace UnityAssetLoader
         public static AssetBundle GetBundle(byte[] bundleBytes) => AssetBundle.LoadFromMemory(bundleBytes);
 
         /// <summary>
+        /// Gets the bundle from an assembly with the provided name
+        /// </summary>
+        /// <param name="name">Name of the bundle including the file extention</param>
+        /// <param name="assembly">Assembly that the asset bundle is in</param>
+        /// <returns></returns>
+        public static AssetBundle GetBundle(string name, Assembly assembly) => assembly.LoadEmbeddedBundle(name);
+
+        /// <summary>
         /// Returns every bundle inside of an assembly
         /// </summary>
         /// <param name="asm">Assembly to dump the asset bundles from</param>
@@ -109,7 +117,7 @@ namespace UnityAssetLoader
         /// <summary>
         /// Gets an Unity UnityEngine.Object with the provided name and type
         /// </summary>
-        /// <param name="UnityEngine.ObjectType">Type of the UnityEngine.Object to get</param>
+        /// <param name="objectType">Type of the UnityEngine.Object to get</param>
         /// <param name="prefabName">Name of the asset to load from the bundle (including file extenstion)</param>
         /// <returns></returns>
         public UnityEngine.Object GetAsset(Type objectType, string prefabName) => GetBundle().LoadAsset(prefabName, objectType);
@@ -129,26 +137,5 @@ namespace UnityAssetLoader
         /// <returns></returns>
         public T GetAsset<T>(string assetName) where T : UnityEngine.Object => GetBundle().LoadAsset<T>(assetName);
 
-    }
-
-    /// <summary>
-    /// Extentions for <see cref="IAssetLoader"/>
-    /// </summary>
-    public static class IAssetLoaderExt
-    {
-        /// <summary>
-        /// Loads the bytes of the file that this asset loader points to inside of your project's metadata
-        /// </summary>
-        /// <param name="assetLoader"></param>
-        /// <returns></returns>
-        public static byte[] LoadAssetBytes(this IAssetLoader assetLoader)
-        {
-            return assetLoader.Assembly.GetManifestResourceStream(assetLoader.AssetName).Bytes();
-        }
-
-        public static Stream LoadAssetStream(this IAssetLoader assetLoader)
-        {
-            return assetLoader.Assembly.GetManifestResourceStream(assetLoader.AssetName);
-        }
     }
 }
