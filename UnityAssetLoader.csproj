@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<DocumentationFile>bin\$(TargetFramework)\UnityAssetLoader.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="UnityEngine.Modules" Version="5.6.0" IncludeAssets="compile" />
+	</ItemGroup>
+
+</Project>
