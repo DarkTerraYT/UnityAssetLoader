@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using UnityEngine;
 
-namespace AssetLoader.Resources
+namespace UnityAssetLoader.Resources
 {
     internal static class ResourceHandler
     {

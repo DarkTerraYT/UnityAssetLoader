@@ -1,4 +1,4 @@
-﻿using AssetLoader.Resources;
+﻿using UnityAssetLoader.Resources;
 
 namespace UnityAssetLoader
 {
